@@ -24,70 +24,68 @@ class _HomePageState extends State<HomePage> {
 
   Widget _body() {
     return new Center(
-      child: 
-      Column(
-      
-      crossAxisAlignment: CrossAxisAlignment.center,
-      //mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image(
-          image: AssetImage('assets/cvrpurple.png'),
-          width: 200,
-          height: 200
-          )
-        ,
-        Text("CVRNet App DEVELOPER BUILD v1.0.0"),
-        TextButton(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        //mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image(
+              image: AssetImage('assets/cvrpurple.png'),
+              width: 200,
+              height: 200),
+          Text("CVRNet App DEVELOPER BUILD v1.0.0"),
+          TextButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FeedPage()),
+              );
+            },
+            child: Text('Feed'),
           ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => FeedPage()),
-            );
-          },
-          child: Text('Feed'),
-        ),
-        TextButton(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+          TextButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            ),
+            onPressed: () {
+              FeedPage(
+                  feedURL:
+                      "https://api.compensationvr.tk/api/social/imgfeed?offset=0&count=5&reverse");
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Search()),
+              );
+            },
+            child: Text('Search'),
           ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Search()),
-            );
-          },
-          child: Text('Search'),
-        ),
-        TextButton(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+          TextButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FeedPage()),
+              );
+            },
+            child: Text('Store'),
           ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => FeedPage()),
-            );
-          },
-          child: Text('Store'),
-        ),
-        TextButton(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+          TextButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Settings()),
+              );
+            },
+            child: Text('Settings'),
           ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Settings()),
-            );
-          },
-          child: Text('Settings'),
-        ),
-        
-      ],
-    ),
+        ],
+      ),
     );
   }
 }

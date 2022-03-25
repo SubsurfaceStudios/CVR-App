@@ -26,7 +26,7 @@ class _HomePageState extends State<Settings> {
       child:
       Column(
         children: [
-          Text("CVRNet App v1.0.0 [Developer]"),
+          Text("CVRNet App v1.0.1 [Developer]"),
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
