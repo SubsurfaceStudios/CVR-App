@@ -1,6 +1,6 @@
 import 'package:cvrnet/home_page.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
+import 'main.dart'; //not sure why this isn't maked as used
 import 'credits.dart';
 
 class Settings extends StatefulWidget {
@@ -23,13 +23,12 @@ class _HomePageState extends State<Settings> {
 
   Widget _body() {
     return new Center(
-      child:
-      Column(
+      child: Column(
         children: [
           Text("CVRNet App v1.0.1 [Developer]"),
           TextButton(
             style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.purple),
             ),
             onPressed: () {
               Navigator.push(
@@ -41,7 +40,7 @@ class _HomePageState extends State<Settings> {
           ),
           TextButton(
             style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
             ),
             onPressed: () {
               Navigator.push(
@@ -53,7 +52,7 @@ class _HomePageState extends State<Settings> {
           ),
           TextButton(
             style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.grey),
             ),
             onPressed: () {
               Navigator.push(
