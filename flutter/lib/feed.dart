@@ -21,9 +21,9 @@ class _HomePageState extends State<FeedPage> {
 
   get feedURL => String;
 
-  Future loadFeed(url) async {
+  Future loadFeed() async {
     // Await the http get response, then decode the json-formatted response.
-    var response = await http.get(Uri.parse(url));
+    var response = await http.get(Uri.parse("https://api.compensationvr.tk/api/social/imgfeed?offset=0&count=5&reverse"));
     if (response.statusCode == 200) {
       feedJson = json.decode(response.body);
       print("Images Fetched Successfully");
@@ -33,7 +33,7 @@ class _HomePageState extends State<FeedPage> {
   }
 
   Widget build(BuildContext context) {
-    loadFeed(feedURL);
+    loadFeed();
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("Feed"),
