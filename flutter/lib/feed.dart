@@ -44,7 +44,7 @@ class _HomePageState extends State<FeedPage> {
   }
 
   Widget _body() {
-    return new Center(
+    return new SingleChildScrollView(
       child: Column(
         children: [
           // Text("Photo Feed goes here"),
@@ -63,6 +63,7 @@ class _HomePageState extends State<FeedPage> {
 
           for (int i = 0; i < (feedJson.length); i++)
             new Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Image.network('https://api.compensationvr.tk${feedJson[i]["filePath"]}'),
               Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
