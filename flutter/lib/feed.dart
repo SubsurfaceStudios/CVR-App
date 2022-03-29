@@ -28,10 +28,12 @@ class _HomePageState extends State<FeedPage> {
       feedJson = json.decode(response.body);
       print("Images Fetched Successfully");
       print(feedJson);
+      setState(() {});
     } else {
       print('IMAGE Request failed with status: ${response.statusCode}.');
     }
   }
+  
 
   Widget build(BuildContext context) {
     loadFeed();
@@ -44,6 +46,7 @@ class _HomePageState extends State<FeedPage> {
   }
 
   Widget _body() {
+    
     return new SingleChildScrollView(
       child: Column(
         children: [
