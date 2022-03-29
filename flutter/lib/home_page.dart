@@ -50,9 +50,6 @@ class _HomePageState extends State<HomePage> {
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
             ),
             onPressed: () {
-              FeedPage(
-                  feedURL:
-                      "https://api.compensationvr.tk/api/social/imgfeed?offset=0&count=5&reverse");
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => Search()),

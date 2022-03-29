@@ -47,19 +47,30 @@ class _HomePageState extends State<FeedPage> {
     return new Center(
       child: Column(
         children: [
-          Text("Photo Feed goes here"),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => FeedPage()),
-              );
-            },
-            child: Text('More'),
-          )
+          // Text("Photo Feed goes here"),
+          // TextButton(
+          //   style: ButtonStyle(
+          //     foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+          //   ),
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(builder: (context) => FeedPage()),
+          //     );
+          //   },
+          //   child: Text('More'),
+          // )
+
+          for (int i = 0; i < (feedJson.length - 1); i++)
+            new Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                    "${feedJson[i]["takenBy"]["username"]}: ${feedJson[i]["takenOn"]["humanReadable"]}",
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left),
+              )
+            ])
         ],
       ),
     );
