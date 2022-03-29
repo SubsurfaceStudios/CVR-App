@@ -61,12 +61,12 @@ class _HomePageState extends State<FeedPage> {
           //   child: Text('More'),
           // )
 
-          for (int i = 0; i < (feedJson.length - 1); i++)
+          for (int i = 0; i < (feedJson.length); i++)
             new Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
-                    "${feedJson[i]["takenBy"]["username"]}: ${feedJson[i]["takenOn"]["humanReadable"]}",
+                    "${i.toString()} - ${feedJson[i]["takenBy"]["username"]}: ${feedJson[i]["takenOn"]["humanReadable"]}",
                     style: const TextStyle(fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left),
               )
