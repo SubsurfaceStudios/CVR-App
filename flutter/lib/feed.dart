@@ -16,17 +16,18 @@ class FeedPage extends StatefulWidget {
 }
 
 class _HomePageState extends State<FeedPage> {
-  @override
-  var feedJson = {};
+  var feedJson = null;
 
   get feedURL => String;
 
   Future loadFeed() async {
     // Await the http get response, then decode the json-formatted response.
-    var response = await http.get(Uri.parse("https://api.compensationvr.tk/api/social/imgfeed?offset=0&count=5&reverse"));
+    var response = await http.get(Uri.parse(
+        "https://api.compensationvr.tk/api/social/imgfeed?offset=0&count=5&reverse"));
     if (response.statusCode == 200) {
       feedJson = json.decode(response.body);
       print("Images Fetched Successfully");
+      print(feedJson);
     } else {
       print('IMAGE Request failed with status: ${response.statusCode}.');
     }
