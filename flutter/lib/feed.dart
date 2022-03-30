@@ -39,8 +39,8 @@ class _HomePageState extends State<FeedPage> {
         print('Image feed request failed with status: ${response.statusCode}.');
         showOkAlertDialog(
           context: context,
-          title: "Error",
-          message: "Image feed request failed with status: ${response.statusCode}."
+          title: "Connection Error",
+          message: "Check the status of your internet connection and try again. if the issue persists, contact support. [Error code ${response.statusCode}]"
         );
       }
     } else {
