@@ -18,27 +18,34 @@ class FeedPage extends StatefulWidget {
 class _HomePageState extends State<FeedPage> {
   var feedJson = null;
   var offset = 0;
+  var requested = false;
 
   get feedURL => String;
 
   Future loadFeed() async {
+    print("feedload called");
     // Await the http get response, then decode the json-formatted response.
-    var response = await http.get(Uri.parse(
-        "https://api.compensationvr.tk/api/social/imgfeed?offset=${offset}&count=5&reverse"));
-    if (response.statusCode == 200) {
-      feedJson = json.decode(response.body);
-      print("Images Fetched Successfully");
-      print(feedJson);
-      setState(() {});
+    if (requested == false) {
+      var response = await http.get(Uri.parse(
+          "https://api.compensationvr.tk/api/social/imgfeed?offset=${offset}&count=5&reverse"));
+      if (response.statusCode == 200) {
+        feedJson = json.decode(response.body);
+        print("Images Fetched Successfully");
+        print(feedJson);
+        setState(() {requested = true;});
+      } else {
+        print('IMAGE Request failed with status: ${response.statusCode}.');
+      }
     } else {
-      print('IMAGE Request failed with status: ${response.statusCode}.');
+      print("Already requested");
     }
   }
 
   void nextInFeed() {
     setState(() {
-        offset = offset + 5;
-      }); 
+      requested = false;
+      offset = offset + 5;
+    });
   }
 
   Widget build(BuildContext context) {
@@ -55,33 +62,22 @@ class _HomePageState extends State<FeedPage> {
     return new SingleChildScrollView(
       child: Column(
         children: [
-          // Text("Photo Feed goes here"),
-          // TextButton(
-          //   style: ButtonStyle(
-          //     foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-          //   ),
-          //   onPressed: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(builder: (context) => FeedPage()),
-          //     );
-          //   },
-          //   child: Text('More'),
-          // )
-
-          for (int i = 0; i < (feedJson.length); i++)
-            new Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Image.network(
-                  'https://api.compensationvr.tk${feedJson[i]["filePath"]}'),
-              Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                    "${i.toString()} - ${feedJson[i]["takenBy"]["username"]}: ${feedJson[i]["takenOn"]["humanReadable"]}",
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.left),
-              )
-            ]),
-            TextButton(onPressed: nextInFeed, child: Text("Next"))
+          if (feedJson != null)
+            for (int i = 0; i < (feedJson.length); i++)
+              new Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.network(
+                        'https://api.compensationvr.tk${feedJson[i]["filePath"]}'),
+                    Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text(
+                          "${i.toString()} - ${feedJson[i]["takenBy"]["username"]}: ${feedJson[i]["takenOn"]["humanReadable"]}",
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.left),
+                    )
+                  ]),
+          TextButton(onPressed: nextInFeed, child: Text("Next"))
         ],
       ),
     );
