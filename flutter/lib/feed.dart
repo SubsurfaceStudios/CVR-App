@@ -17,13 +17,14 @@ class FeedPage extends StatefulWidget {
 
 class _HomePageState extends State<FeedPage> {
   var feedJson = null;
+  var offset = 0;
 
   get feedURL => String;
 
   Future loadFeed() async {
     // Await the http get response, then decode the json-formatted response.
     var response = await http.get(Uri.parse(
-        "https://api.compensationvr.tk/api/social/imgfeed?offset=0&count=5&reverse"));
+        "https://api.compensationvr.tk/api/social/imgfeed?offset=${offset}&count=5&reverse"));
     if (response.statusCode == 200) {
       feedJson = json.decode(response.body);
       print("Images Fetched Successfully");
@@ -33,7 +34,12 @@ class _HomePageState extends State<FeedPage> {
       print('IMAGE Request failed with status: ${response.statusCode}.');
     }
   }
-  
+
+  void nextInFeed() {
+    setState(() {
+        offset = offset + 5;
+      }); 
+  }
 
   Widget build(BuildContext context) {
     loadFeed();
@@ -46,7 +52,6 @@ class _HomePageState extends State<FeedPage> {
   }
 
   Widget _body() {
-    
     return new SingleChildScrollView(
       child: Column(
         children: [
@@ -66,7 +71,8 @@ class _HomePageState extends State<FeedPage> {
 
           for (int i = 0; i < (feedJson.length); i++)
             new Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Image.network('https://api.compensationvr.tk${feedJson[i]["filePath"]}'),
+              Image.network(
+                  'https://api.compensationvr.tk${feedJson[i]["filePath"]}'),
               Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
@@ -74,7 +80,8 @@ class _HomePageState extends State<FeedPage> {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left),
               )
-            ])
+            ]),
+            TextButton(onPressed: nextInFeed, child: Text("Next"))
         ],
       ),
     );
