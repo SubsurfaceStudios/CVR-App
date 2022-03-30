@@ -79,7 +79,7 @@ class _HomePageState extends State<FeedPage> {
                     Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text(
-                          "${feedJson[i]["takenBy"]["username"]}: ${feedJson[i]["takenOn"]["humanReadable"]}",
+                          "Photo by ${feedJson[i]["takenBy"]["username"]} at ${feedJson[i]["takenOn"]["humanReadable"]}",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.left),
                     )
