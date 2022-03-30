@@ -25,7 +25,7 @@ class _HomePageState extends State<Settings> {
     return new Center(
       child: Column(
         children: [
-          Text("CVRNet App v1.0.1 [Developer]"),
+          Text("CVRNet App v1.0.2 [Developer]"),
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.purple),
