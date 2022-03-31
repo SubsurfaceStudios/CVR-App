@@ -20,6 +20,8 @@ class _HomePageState extends State<FeedPage> {
   var feedJson = null;
   var offset = 0;
   var requested = false;
+  var existing = null;
+  var newitems = null;
 
   Future loadFeed() async {
     print("feedload called");
@@ -29,7 +31,17 @@ class _HomePageState extends State<FeedPage> {
       var response = await http.get(Uri.parse(
           "https://api.compensationvr.tk/api/social/imgfeed?offset=${offset}&count=5&reverse"));
       if (response.statusCode == 200) {
-        feedJson = json.decode(response.body);
+        if (feedJson != null) {
+          print("combine" + offset.toString());
+
+          feedJson = feedJson + json.decode(response.body);
+        } else {
+          feedJson = json.decode(response.body);
+          print("set" + offset.toString());
+        }
+        // feedJson = json.decode(response.body);
+
+        (feedJson as List).addAll(json.decode(response.body.toString()));
         print("Images Fetched Successfully");
         print(feedJson);
         setState(() {
@@ -38,10 +50,10 @@ class _HomePageState extends State<FeedPage> {
       } else {
         print('Image feed request failed with status: ${response.statusCode}.');
         showOkAlertDialog(
-          context: context,
-          title: "Connection Error",
-          message: "Check the status of your internet connection and try again. if the issue persists, contact support. [Error code ${response.statusCode}]"
-        );
+            context: context,
+            title: "Connection Error",
+            message:
+                "Check the status of your internet connection and try again. if the issue persists, contact support. [Error code ${response.statusCode}]");
       }
     } else {
       print("Already requested");
@@ -79,7 +91,7 @@ class _HomePageState extends State<FeedPage> {
                     Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text(
-                          "Photo by ${feedJson[i]["takenBy"]["username"]} at ${feedJson[i]["takenOn"]["humanReadable"]}",
+                          "${i} Photo by ${feedJson[i]["takenBy"]["username"]} at ${feedJson[i]["takenOn"]["humanReadable"]}",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.left),
                     )
