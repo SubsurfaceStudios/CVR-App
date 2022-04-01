@@ -110,6 +110,20 @@ class _HomePageState extends State<FeedPage> {
                             ),
                             )
                           );
+                        },
+                        errorBuilder:(BuildContext context, Object exception, StackTrace? stackTrace) {
+                          return Container(
+                            height: MediaQuery.of(context).size.width / (1920/1080),
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  Text("Error loading image",textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold)),
+                                  Text(exception.toString(),textAlign: TextAlign.center,),
+                                ],
+                                mainAxisAlignment: MainAxisAlignment.center,
+                              )
+                            )
+                          );
                         },),
                     Padding(
                       padding: EdgeInsets.all(16.0),
