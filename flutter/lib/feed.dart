@@ -78,6 +78,7 @@ class _HomePageState extends State<FeedPage> {
       body: _body(),
     );
   }
+  
 
   Widget _body() {
     return new SingleChildScrollView(
@@ -89,11 +90,28 @@ class _HomePageState extends State<FeedPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.network(
-                        'https://api.compensationvr.tk${feedJson[i]["filePath"]}'),
+                        'https://api.compensationvr.tk${feedJson[i]["filePath"]}',
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.width / (1920/1080),
+                        fit: BoxFit.cover,
+                        loadingBuilder: (BuildContext context, Widget child,
+                            ImageChunkEvent? loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          }
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
+                                  : null,
+                            ),
+                          );
+                        },),
                     Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text(
-                          "${i} Photo by ${feedJson[i]["takenBy"]["username"]} at ${feedJson[i]["takenOn"]["humanReadable"]}",
+                          "Photo by ${feedJson[i]["takenBy"]["username"]} at ${feedJson[i]["takenOn"]["humanReadable"]}",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.left),
                     )
