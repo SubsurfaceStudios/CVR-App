@@ -99,13 +99,16 @@ class _HomePageState extends State<FeedPage> {
                           if (loadingProgress == null) {
                             return child;
                           }
-                          return Center(
-                            child: CircularProgressIndicator(
+                          return Container(
+                            height: MediaQuery.of(context).size.width / (1920/1080),
+                            child: Center(
+                              child: CircularProgressIndicator(
                               value: loadingProgress.expectedTotalBytes != null
                                   ? loadingProgress.cumulativeBytesLoaded /
                                       loadingProgress.expectedTotalBytes!
                                   : null,
                             ),
+                            )
                           );
                         },),
                     Padding(
