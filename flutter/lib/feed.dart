@@ -22,6 +22,7 @@ class _HomePageState extends State<FeedPage> {
   var requested = false;
   var existing = null;
   var newitems = null;
+  var feedsize = 12;
 
   Future loadFeed() async {
     print("feedload called");
@@ -29,7 +30,7 @@ class _HomePageState extends State<FeedPage> {
     if (requested == false) {
       print("getting feed");
       var response = await http.get(Uri.parse(
-          "https://api.compensationvr.tk/api/social/imgfeed?offset=${offset}&count=5&reverse"));
+          "https://api.compensationvr.tk/api/social/imgfeed?offset=${offset}&count=${feedsize}&reverse"));
       if (response.statusCode == 200) {
         if (feedJson != null) {
           print("combine" + offset.toString());
@@ -43,7 +44,6 @@ class _HomePageState extends State<FeedPage> {
         }
         // feedJson = json.decode(response.body);
 
-        
         print("Images Fetched Successfully");
         print(feedJson);
         setState(() {
@@ -65,7 +65,7 @@ class _HomePageState extends State<FeedPage> {
   void nextInFeed() {
     setState(() {
       requested = false;
-      offset = offset + 5;
+      offset = offset + feedsize;
     });
   }
 
@@ -78,7 +78,6 @@ class _HomePageState extends State<FeedPage> {
       body: _body(),
     );
   }
-  
 
   Widget _body() {
     return new SingleChildScrollView(
@@ -90,41 +89,49 @@ class _HomePageState extends State<FeedPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.network(
-                        'https://api.compensationvr.tk${feedJson[i]["filePath"]}',
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.width / (1920/1080),
-                        fit: BoxFit.cover,
-                        loadingBuilder: (BuildContext context, Widget child,
-                            ImageChunkEvent? loadingProgress) {
-                          if (loadingProgress == null) {
-                            return child;
-                          }
-                          return Container(
-                            height: MediaQuery.of(context).size.width / (1920/1080),
+                      'https://api.compensationvr.tk${feedJson[i]["filePath"]}',
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.width / (1920 / 1080),
+                      fit: BoxFit.cover,
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        }
+                        return Container(
+                            height: MediaQuery.of(context).size.width /
+                                (1920 / 1080),
                             child: Center(
                               child: CircularProgressIndicator(
-                              value: loadingProgress.expectedTotalBytes != null
-                                  ? loadingProgress.cumulativeBytesLoaded /
-                                      loadingProgress.expectedTotalBytes!
-                                  : null,
-                            ),
-                            )
-                          );
-                        },
-                        errorBuilder:(BuildContext context, Object exception, StackTrace? stackTrace) {
-                          return Container(
-                            height: MediaQuery.of(context).size.width / (1920/1080),
+                                value: loadingProgress.expectedTotalBytes !=
+                                        null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            ));
+                      },
+                      errorBuilder: (BuildContext context, Object exception,
+                          StackTrace? stackTrace) {
+                        return Container(
+                            height: MediaQuery.of(context).size.width /
+                                (1920 / 1080),
                             child: Center(
-                              child: Column(
-                                children: [
-                                  Text("Error loading image",textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold)),
-                                  Text(exception.toString(),textAlign: TextAlign.center,),
-                                ],
-                                mainAxisAlignment: MainAxisAlignment.center,
-                              )
-                            )
-                          );
-                        },),
+                                child: Column(
+                              children: [
+                                Text("Error loading image",
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                                Text(
+                                  exception.toString(),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                              mainAxisAlignment: MainAxisAlignment.center,
+                            )));
+                      },
+                    ),
                     Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text(
