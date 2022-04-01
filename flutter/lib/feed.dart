@@ -33,15 +33,17 @@ class _HomePageState extends State<FeedPage> {
       if (response.statusCode == 200) {
         if (feedJson != null) {
           print("combine" + offset.toString());
-
-          feedJson = feedJson + json.decode(response.body);
+          print(feedJson.length);
+          (feedJson as List).addAll(json.decode(response.body.toString()));
+          print(feedJson.length);
         } else {
           feedJson = json.decode(response.body);
+          print(feedJson.length);
           print("set" + offset.toString());
         }
         // feedJson = json.decode(response.body);
 
-        (feedJson as List).addAll(json.decode(response.body.toString()));
+        
         print("Images Fetched Successfully");
         print(feedJson);
         setState(() {
