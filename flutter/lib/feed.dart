@@ -113,6 +113,7 @@ class _HomePageState extends State<FeedPage> {
                       },
                       errorBuilder: (BuildContext context, Object exception,
                           StackTrace? stackTrace) {
+                        print('Image feed request failed with status: ${stackTrace}.');
                         return Container(
                             height: MediaQuery.of(context).size.width /
                                 (1920 / 1080),
@@ -135,7 +136,7 @@ class _HomePageState extends State<FeedPage> {
                     Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text(
-                          "Photo by ${feedJson[i]["takenBy"]["username"]} at ${feedJson[i]["takenOn"]["humanReadable"]}",
+                          "Photo by ${feedJson[i]["takenBy"]["username"]} on ${feedJson[i]["takenOn"]["humanReadable"]}",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.left),
                     )
