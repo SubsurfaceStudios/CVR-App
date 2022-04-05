@@ -3,6 +3,7 @@ import 'main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FeedPage extends StatefulWidget {
   FeedPage({
@@ -79,7 +80,11 @@ class _HomePageState extends State<FeedPage> {
     );
   }
 
+
+  
   Widget _body() {
+    
+
     return new SingleChildScrollView(
       child: Column(
         children: [
@@ -113,7 +118,8 @@ class _HomePageState extends State<FeedPage> {
                       },
                       errorBuilder: (BuildContext context, Object exception,
                           StackTrace? stackTrace) {
-                        print('Image feed request failed with status: ${stackTrace}.');
+                        print(
+                            'Image feed request failed with status: ${stackTrace}.');
                         return Container(
                             height: MediaQuery.of(context).size.width /
                                 (1920 / 1080),
