@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:async';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,6 +25,18 @@ class _HomePageState extends State<FeedPage> {
   var existing = null;
   var newitems = null;
   var feedsize = 12;
+
+  ScrollController _scrollController = new ScrollController();
+
+  void initState() {
+    super.initState();
+    
+
+  //   Timer.periodic(Duration(seconds: 2), (Timer t) {
+  //   print("initState");
+  //   print(body_.of(context)?.position.pixels);
+  // });
+  }
 
   Future loadFeed() async {
     print("feedload called");
@@ -80,73 +93,76 @@ class _HomePageState extends State<FeedPage> {
     );
   }
 
-
   
+
   Widget _body() {
-    
+    _scrollController
+  ..addListener(() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+        nextInFeed();
+    }
+  });
 
     return new SingleChildScrollView(
+      controller: _scrollController,
       child: Column(
         children: [
           if (feedJson != null)
             for (int i = 0; i < (feedJson.length); i++)
-              new Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.network(
-                      'https://api.compensationvr.tk${feedJson[i]["filePath"]}',
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.width / (1920 / 1080),
-                      fit: BoxFit.cover,
-                      loadingBuilder: (BuildContext context, Widget child,
-                          ImageChunkEvent? loadingProgress) {
-                        if (loadingProgress == null) {
-                          return child;
-                        }
-                        return Container(
-                            height: MediaQuery.of(context).size.width /
-                                (1920 / 1080),
-                            child: Center(
-                              child: CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes !=
-                                        null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                        loadingProgress.expectedTotalBytes!
-                                    : null,
-                              ),
-                            ));
-                      },
-                      errorBuilder: (BuildContext context, Object exception,
-                          StackTrace? stackTrace) {
-                        print(
-                            'Image feed request failed with status: ${stackTrace}.');
-                        return Container(
-                            height: MediaQuery.of(context).size.width /
-                                (1920 / 1080),
-                            child: Center(
-                                child: Column(
-                              children: [
-                                Text("Error loading image",
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                Text(
-                                  exception.toString(),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                              mainAxisAlignment: MainAxisAlignment.center,
-                            )));
-                      },
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Text(
-                          "Photo by ${feedJson[i]["takenBy"]["username"]} on ${feedJson[i]["takenOn"]["humanReadable"]}",
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.left),
-                    )
-                  ]),
+              new Column(children: [
+                Image.network(
+                  'https://api.compensationvr.tk${feedJson[i]["filePath"]}',
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.width / (1920 / 1080),
+                  fit: BoxFit.cover,
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    }
+                    return Container(
+                        height:
+                            MediaQuery.of(context).size.width / (1920 / 1080),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        ));
+                  },
+                  errorBuilder: (BuildContext context, Object exception,
+                      StackTrace? stackTrace) {
+                    print(
+                        'Image feed request failed with status: ${stackTrace}.');
+                    return Container(
+                        height:
+                            MediaQuery.of(context).size.width / (1920 / 1080),
+                        child: Center(
+                            child: Column(
+                          children: [
+                            Text("Error loading image",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text(
+                              exception.toString(),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.center,
+                        )));
+                  },
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                      "Photo by ${feedJson[i]["takenBy"]["username"]} on ${feedJson[i]["takenOn"]["humanReadable"]}",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left),
+                )
+              ]),
           TextButton(onPressed: nextInFeed, child: Text("Next"))
         ],
       ),
