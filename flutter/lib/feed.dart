@@ -137,7 +137,7 @@ class _HomePageState extends State<FeedPage> {
                   errorBuilder: (BuildContext context, Object exception,
                       StackTrace? stackTrace) {
                     print(
-                        'Image feed request failed with status: ${stackTrace}.');
+                        'Image feed request error: ${stackTrace}.');
                     return Container(
                         height:
                             MediaQuery.of(context).size.width / (1920 / 1080),
