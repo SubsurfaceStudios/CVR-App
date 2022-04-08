@@ -110,7 +110,8 @@ class _HomePageState extends State<FeedPage> {
         children: [
           if (feedJson != null)
             for (int i = 0; i < (feedJson.length); i++)
-              new Column(children: [
+              new Column(
+                children: [
                 Image.network(
                   'https://api.compensationvr.tk${feedJson[i]["filePath"]}',
                   width: MediaQuery.of(context).size.width,
