@@ -164,7 +164,14 @@ class _HomePageState extends State<FeedPage> {
                       textAlign: TextAlign.left),
                 )
               ]),
-          TextButton(onPressed: nextInFeed, child: Text("Next"))
+          Center(   
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: CircularProgressIndicator(),
+            ),
+          ),
+          
+          
         ],
       ),
     );
