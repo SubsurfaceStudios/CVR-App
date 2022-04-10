@@ -175,5 +175,5 @@ class _HomePageState extends State<FeedPage> {
         ],
       ),
     );
-  }
+  } 
 }
