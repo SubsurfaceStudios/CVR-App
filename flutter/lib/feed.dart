@@ -88,6 +88,22 @@ class _HomePageState extends State<FeedPage> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("Feed"),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.refresh_rounded),
+            tooltip: 'Refresh',
+            onPressed: () {
+              setState(() {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => super.widget));  
+              });
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Refreshed Feed')));
+            },
+          ),
+        ]
       ),
       body: _body(),
     );
