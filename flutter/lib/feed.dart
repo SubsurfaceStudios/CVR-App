@@ -22,6 +22,7 @@ class _HomePageState extends State<FeedPage> {
   var feedJson = null;
   var offset = 0;
   var requested = false;
+  var feedcalled = false;
   var existing = null;
   var newitems = null;
   var feedsize = 12;
@@ -30,12 +31,11 @@ class _HomePageState extends State<FeedPage> {
 
   void initState() {
     super.initState();
-    
 
-  //   Timer.periodic(Duration(seconds: 2), (Timer t) {
-  //   print("initState");
-  //   print(body_.of(context)?.position.pixels);
-  // });
+    //   Timer.periodic(Duration(seconds: 2), (Timer t) {
+    //   print("initState");
+    //   print(body_.of(context)?.position.pixels);
+    // });
   }
 
   Future loadFeed() async {
@@ -45,6 +45,12 @@ class _HomePageState extends State<FeedPage> {
       print("getting feed");
       var response = await http.get(Uri.parse(
           "https://api.compensationvr.tk/api/social/imgfeed?offset=${offset}&count=${feedsize}&reverse"));
+
+      setState(() {
+        feedcalled = false;
+      });
+
+      feedcalled = false;
       if (response.statusCode == 200) {
         if (feedJson != null) {
           print("combine" + offset.toString());
@@ -59,17 +65,20 @@ class _HomePageState extends State<FeedPage> {
         // feedJson = json.decode(response.body);
 
         print("Images Fetched Successfully");
-        print(feedJson);
+        print("LOADSUCCESS " +
+            "https://api.compensationvr.tk/api/social/imgfeed?offset=${offset}&count=${feedsize}&reverse");
         setState(() {
           requested = true;
         });
       } else {
         print('Image feed request failed with status: ${response.statusCode}.');
+        print("LOADERROR " +
+            "https://api.compensationvr.tk/api/social/imgfeed?offset=${offset}&count=${feedsize}&reverse");
         showOkAlertDialog(
             context: context,
             title: "Connection Error",
             message:
-                "Check the status of your internet connection and try again. if the issue persists, contact support. [Error code ${response.statusCode}]");
+                "Check the status of your internet connection and try again. if the issue persists, contact support on our Discord. [Error code ${response.statusCode}]");
       }
     } else {
       print("Already requested");
@@ -77,6 +86,7 @@ class _HomePageState extends State<FeedPage> {
   }
 
   void nextInFeed() {
+    print("NEXTINFEED");
     setState(() {
       requested = false;
       offset = offset + feedsize;
@@ -86,39 +96,39 @@ class _HomePageState extends State<FeedPage> {
   Widget build(BuildContext context) {
     loadFeed();
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Feed"),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.refresh_rounded),
-            tooltip: 'Refresh',
-            onPressed: () {
-              setState(() {
-                Navigator.pushReplacement(
+      appBar: new AppBar(title: new Text("Feed"), actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.refresh_rounded),
+          tooltip: 'Refresh',
+          onPressed: () {
+            setState(() {
+              Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => super.widget));  
-              });
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Refreshed Feed')));
-            },
-          ),
-        ]
-      ),
+                      builder: (BuildContext context) => super.widget));
+            });
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('Refreshed Feed')));
+          },
+        ),
+      ]),
       body: _body(),
     );
   }
 
-  
-
   Widget _body() {
     _scrollController
-  ..addListener(() {
-    if (_scrollController.position.pixels ==
-        _scrollController.position.maxScrollExtent) {
-        nextInFeed();
-    }
-  });
+      ..addListener(() {
+        if (_scrollController.position.pixels ==
+            _scrollController.position.maxScrollExtent) {
+          print(feedcalled);
+          if (feedcalled == false) {
+            feedcalled = true;
+            nextInFeed();
+            feedcalled = false;
+          }
+        }
+      });
 
     return new SingleChildScrollView(
       controller: _scrollController,
@@ -126,8 +136,7 @@ class _HomePageState extends State<FeedPage> {
         children: [
           if (feedJson != null)
             for (int i = 0; i < (feedJson.length); i++)
-              new Column(
-                children: [
+              new Column(children: [
                 Image.network(
                   'https://api.compensationvr.tk${feedJson[i]["filePath"]}',
                   width: MediaQuery.of(context).size.width,
@@ -152,8 +161,7 @@ class _HomePageState extends State<FeedPage> {
                   },
                   errorBuilder: (BuildContext context, Object exception,
                       StackTrace? stackTrace) {
-                    print(
-                        'Image feed request error: ${stackTrace}.');
+                    print('Image feed request error: ${stackTrace}.');
                     return Container(
                         height:
                             MediaQuery.of(context).size.width / (1920 / 1080),
@@ -180,16 +188,14 @@ class _HomePageState extends State<FeedPage> {
                       textAlign: TextAlign.left),
                 )
               ]),
-          Center(   
+          Center(
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: CircularProgressIndicator(),
             ),
           ),
-          
-          
         ],
       ),
     );
-  } 
+  }
 }
