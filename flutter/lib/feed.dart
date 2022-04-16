@@ -124,7 +124,7 @@ class _HomePageState extends State<FeedPage> {
           print(feedcalled);
           if (feedcalled == false) {
             feedcalled = true;
-            nextInFeed();
+            nextInFeed(); //WHY IS THIS CALLING 80 FUCKING TIMES
             feedcalled = false;
           }
         }
