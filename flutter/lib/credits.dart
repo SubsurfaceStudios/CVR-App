@@ -32,7 +32,6 @@ class _HomePageState extends State<Credits> {
           Text("CompensationVR/API Developer - Rose932."),
           Text("CompensationVR/Music Developer - LeonToGamer."),
           Text("Marketing - Opabina."),
-          Text("Marketing - Dark."),
           Text("Marketing - Ciunics."),
           Text("Support - Demented."),
           TextButton(
