@@ -78,7 +78,7 @@ class _HomePageState extends State<FeedPage> {
             context: context,
             title: "Connection Error",
             message:
-                "Check the status of your internet connection and try again. if the issue persists, contact support on our Discord. [Error code ${response.statusCode}]");
+                "Check the status of your internet connection and try again. if the issue persists, contact mobile support on Discord. [Error code ${response.statusCode}]");
       }
     } else {
       print("Already requested");
