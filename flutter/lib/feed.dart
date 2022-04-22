@@ -12,7 +12,7 @@ class FeedPage extends StatefulWidget {
     @required this.feedURL,
   }) : super(key: key);
 
-  var feedURL;
+  var feedURL; //IIRC this is redundant
 
   @override
   _HomePageState createState() => new _HomePageState();
