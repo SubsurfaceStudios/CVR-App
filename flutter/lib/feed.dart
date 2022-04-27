@@ -27,27 +27,15 @@ class _HomePageState extends State<FeedPage> {
 
   ScrollController _scrollController = new ScrollController();
 
-  void initState() {
-    super.initState();
-
-    //   Timer.periodic(Duration(seconds: 2), (Timer t) {
-    //   print("initState");
-    //   print(body_.of(context)?.position.pixels);
-    // });
-  }
-
   Future loadFeed() async {
     print("feedload called");
     // Await the http get response, then decode the json-formatted response.
     if (requested == false) {
+      requested = true;
+      requested = true;
       print("getting feed");
       var response = await http.get(Uri.parse(
           "https://api.compensationvr.tk/api/social/imgfeed?offset=${offset}&count=${feedsize}&reverse"));
-
-      setState(() {
-        feedcalled = false;
-        _isLoading = false;
-      });
 
       // feedcalled = false;
       if (response.statusCode == 200) {
@@ -66,9 +54,6 @@ class _HomePageState extends State<FeedPage> {
         print("Images Fetched Successfully");
         print("LOADSUCCESS " +
             "https://api.compensationvr.tk/api/social/imgfeed?offset=${offset}&count=${feedsize}&reverse");
-        setState(() {
-          requested = true;
-        });
       } else {
         print('Image feed request failed with status: ${response.statusCode}.');
         print("LOADERROR " +
@@ -79,6 +64,11 @@ class _HomePageState extends State<FeedPage> {
             message:
                 "Check the status of your internet connection and try again. if the issue persists, contact mobile support on Discord. [Error code ${response.statusCode}]");
       }
+      setState(() {
+        feedcalled = false;
+        requested = false;
+        _isLoading = false;
+      });
     } else {
       print("Already requested");
     }
@@ -92,7 +82,6 @@ class _HomePageState extends State<FeedPage> {
   }
 
   Widget build(BuildContext context) {
-    loadFeed();
     print("build");
     return new Scaffold(
       appBar: new AppBar(title: new Text("Feed"), actions: <Widget>[
@@ -118,7 +107,10 @@ class _HomePageState extends State<FeedPage> {
   Widget _body() {
     _scrollController
       ..addListener(() {
-        if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+        
+        if (_scrollController.position.pixels ==
+                _scrollController.position.maxScrollExtent ||
+            _scrollController.position.maxScrollExtent == 0) {
           if (_isLoading == false) {
             _isLoading = true;
             print("scrollrefresh");
@@ -130,8 +122,8 @@ class _HomePageState extends State<FeedPage> {
           }
         }
       });
-
-    return new SingleChildScrollView(
+    print(_scrollController.position.maxScrollExtent);
+    var output =  new SingleChildScrollView(
       controller: _scrollController,
       child: Column(
         children: [
@@ -198,5 +190,10 @@ class _HomePageState extends State<FeedPage> {
         ],
       ),
     );
+
+
+
+
+    return output;
   }
 }
