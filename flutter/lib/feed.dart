@@ -11,7 +11,6 @@ class FeedPage extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-
   @override
   _HomePageState createState() => new _HomePageState();
 }
@@ -21,6 +20,7 @@ class _HomePageState extends State<FeedPage> {
   var offset = 0;
   var requested = false;
   var feedcalled = false;
+  var _isLoading = false;
   var existing = null;
   var newitems = null;
   var feedsize = 12;
@@ -46,9 +46,10 @@ class _HomePageState extends State<FeedPage> {
 
       setState(() {
         feedcalled = false;
+        _isLoading = false;
       });
 
-      feedcalled = false;
+      // feedcalled = false;
       if (response.statusCode == 200) {
         if (feedJson != null) {
           print("combine" + offset.toString());
@@ -86,13 +87,13 @@ class _HomePageState extends State<FeedPage> {
   void nextInFeed() {
     print("NEXTINFEED");
     setState(() {
-      requested = false;
       offset = offset + feedsize;
     });
   }
 
   Widget build(BuildContext context) {
     loadFeed();
+    print("build");
     return new Scaffold(
       appBar: new AppBar(title: new Text("Feed"), actions: <Widget>[
         IconButton(
@@ -117,13 +118,15 @@ class _HomePageState extends State<FeedPage> {
   Widget _body() {
     _scrollController
       ..addListener(() {
-        if (_scrollController.position.pixels ==
-            _scrollController.position.maxScrollExtent) {
-          print(feedcalled);
-          if (feedcalled == false) {
-            feedcalled = true;
-            nextInFeed(); //WHY IS THIS CALLING 80 FUCKING TIMES AAAAAAAAAA
-            feedcalled = false;
+        if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+          if (_isLoading == false) {
+            _isLoading = true;
+            print("scrollrefresh");
+            print(offset);
+            nextInFeed();
+          } else {
+            print("refreshBLOCKED");
+            print(offset);
           }
         }
       });
