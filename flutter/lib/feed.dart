@@ -9,10 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class FeedPage extends StatefulWidget {
   FeedPage({
     Key? key,
-    @required this.feedURL,
   }) : super(key: key);
 
-  var feedURL; //IIRC this is redundant
 
   @override
   _HomePageState createState() => new _HomePageState();
