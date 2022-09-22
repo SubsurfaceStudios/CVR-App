@@ -33,6 +33,7 @@ class _HomePageState extends State<Credits> {
           Text("Marketing - Opabina."),
           Text("Marketing - Ciunics."),
           Text("Support - Demented."),
+          Text("Lizards - alizard"),
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),

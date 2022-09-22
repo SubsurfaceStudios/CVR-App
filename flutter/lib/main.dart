@@ -14,7 +14,17 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Loading...',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.deepPurple,
+          ),
+          scaffoldBackgroundColor: Colors.grey[850],
+          textTheme: TextTheme(
+            headline1: TextStyle(color: Colors.white),
+            headline2: TextStyle(color: Colors.white),
+            bodyText1: TextStyle(color: Colors.white),
+            bodyText2: TextStyle(color: Colors.white),
+          )),
       home: new HomePage(),
     );
   }
