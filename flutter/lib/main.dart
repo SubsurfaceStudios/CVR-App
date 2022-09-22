@@ -1,3 +1,4 @@
+import 'package:cvrnet/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'feed.dart';
@@ -13,18 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Loading...',
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.deepPurple,
-          ),
-          scaffoldBackgroundColor: Colors.grey[850],
-          textTheme: TextTheme(
-            headline1: TextStyle(color: Colors.white),
-            headline2: TextStyle(color: Colors.white),
-            bodyText1: TextStyle(color: Colors.white),
-            bodyText2: TextStyle(color: Colors.white),
-          )),
+      theme: MyThemes.lightTheme,
+      darkTheme: MyThemes.darkTheme,
       home: new HomePage(),
     );
   }
