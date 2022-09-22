@@ -22,8 +22,7 @@ class _HomePageState extends State<Credits> {
 
   Widget _body() {
     return new Center(
-      child:
-      Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text("Created with love using Flutter."),
@@ -32,7 +31,6 @@ class _HomePageState extends State<Credits> {
           Text("CompensationVR/API Developer - Rose932."),
           Text("CompensationVR/Music Developer - LeonToGamer."),
           Text("Marketing - Opabina."),
-          Text("Marketing - Dark."),
           Text("Marketing - Ciunics."),
           Text("Support - Demented."),
           TextButton(
