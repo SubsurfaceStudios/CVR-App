@@ -39,18 +39,6 @@ class _HomePageState extends State<Settings> {
               }),
           TextButton(
             style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.purple),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-              );
-            },
-            child: Text('Dark Mode Toggle'),
-          ),
-          TextButton(
-            style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
             ),
             onPressed: () {},
