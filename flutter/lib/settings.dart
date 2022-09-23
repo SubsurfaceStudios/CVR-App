@@ -1,8 +1,10 @@
 import 'package:cvrnet/home_page.dart';
+import 'package:cvrnet/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'main.dart'; //not sure why this isn't maked as used
+import 'main.dart'; //not sure why this isn't maked as used lol
 import 'credits.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 class Settings extends StatefulWidget {
   Settings({Key? key}) : super(key: key);
@@ -13,9 +15,6 @@ class Settings extends StatefulWidget {
 
 class _HomePageState extends State<Settings> {
   @override
-
-
-  
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
@@ -46,12 +45,7 @@ class _HomePageState extends State<Settings> {
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-              );
-            },
+            onPressed: () {},
             child: Text('Terms of Service'),
           ),
           TextButton(
