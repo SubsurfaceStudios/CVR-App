@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         builder: (context, _) {
           final themeProvider = Provider.of<ThemeProvider>(context);
           return MaterialApp(
-            title: 'Loading...',
+            title: 'CVR Socail',
             themeMode: themeProvider.themeMode,
             debugShowCheckedModeBanner: false, //removes the debug watermark
             theme: MyThemes.lightTheme,
