@@ -31,7 +31,12 @@ class _HomePageState extends State<Settings> {
         children: [
           Text("CVRNet App v1.0.2 [Developer]"),
           Switch.adaptive(
-              value: themeProvider.isDarkMode, onChanged: (value) {}),
+              value: themeProvider.isDarkMode,
+              onChanged: (value) {
+                final provider =
+                    Provider.of<ThemeProvider>(context, listen: false);
+                provider.toggleTheme(value);
+              }),
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.purple),
