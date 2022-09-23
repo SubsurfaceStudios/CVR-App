@@ -25,6 +25,8 @@ class _HomePageState extends State<Credits> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          //currently just a list of text
+          //want to change to something more visually appealing later
           Text("Created with spite using Flutter."),
           Text("Written in Dart."),
           Text("CVRNet/API Developer - Bobrobot1."),
