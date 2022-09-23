@@ -25,10 +25,13 @@ class _HomePageState extends State<Settings> {
   }
 
   Widget _body() {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return new Center(
       child: Column(
         children: [
           Text("CVRNet App v1.0.2 [Developer]"),
+          Switch.adaptive(
+              value: themeProvider.isDarkMode, onChanged: (value) {}),
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.purple),
