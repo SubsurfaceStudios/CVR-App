@@ -29,7 +29,7 @@ class _HomePageState extends State<Settings> {
     return new Center(
       child: Column(
         children: [
-          Text("CVRNet App tegu [concept fork]"), //pointless text
+          Text("CVR Socail App Settings"), //pointless text
           //darkmode switch
           Switch.adaptive(
               value: themeProvider.isDarkMode,
