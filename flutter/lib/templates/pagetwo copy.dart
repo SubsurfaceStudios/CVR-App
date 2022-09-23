@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
+import '/main.dart';
 
 class FeedPage extends StatefulWidget {
   FeedPage({Key? key}) : super(key: key);
@@ -21,8 +21,7 @@ class _HomePageState extends State<FeedPage> {
 
   Widget _body() {
     return new Center(
-      child:
-      Column(
+      child: Column(
         children: [
           Text("Photo Feed goes here"),
           TextButton(

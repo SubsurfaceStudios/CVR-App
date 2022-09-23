@@ -14,7 +14,7 @@ class _HomePageState extends State<Credits> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Feed"),
+        title: new Text("Credits"),
       ),
       body: _body(),
     );
@@ -25,15 +25,17 @@ class _HomePageState extends State<Credits> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text("Created with love using Flutter."),
+          //currently just a list of text
+          //want to change to something more visually appealing later
+          Text("Created with spite using Flutter."),
           Text("Written in Dart."),
           Text("CVRNet/API Developer - Bobrobot1."),
+          Text("Fork Maintainer/Kobold - alizard"),
           Text("CompensationVR/API Developer - Rose932."),
           Text("CompensationVR/Music Developer - LeonToGamer."),
           Text("Marketing - Opabina."),
           Text("Marketing - Ciunics."),
           Text("Support - Demented."),
-          Text("Lizards - alizard"),
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),

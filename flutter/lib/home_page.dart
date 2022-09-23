@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Home Page"),
+        title: new Text("Home"),
       ),
       body: _body(),
     );
@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
               image: AssetImage('assets/cvrpurple.png'),
               width: 200,
               height: 200),
-          Text("CVRNet App TEGU BUILD v1.0.0 (fork of v1.0.2)"),
+          Text("CVRNet App TEGU BUILD v1.2.1 (fork of v1.0.2)"),
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),

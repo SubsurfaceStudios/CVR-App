@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//allows theme switching from a switch component
 class ThemeProvider extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.dark;
 
@@ -11,6 +12,7 @@ class ThemeProvider extends ChangeNotifier {
   }
 }
 
+//supplies the theme data
 class MyThemes {
   static final darkTheme = ThemeData(
       colorScheme: ColorScheme.fromSwatch(

@@ -29,7 +29,8 @@ class _HomePageState extends State<Settings> {
     return new Center(
       child: Column(
         children: [
-          Text("CVRNet App tegu"),
+          Text("CVRNet App tegu [concept fork]"), //pointless text
+          //darkmode switch
           Switch.adaptive(
               value: themeProvider.isDarkMode,
               onChanged: (value) {
@@ -37,18 +38,7 @@ class _HomePageState extends State<Settings> {
                     Provider.of<ThemeProvider>(context, listen: false);
                 provider.toggleTheme(value);
               }),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.purple),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-              );
-            },
-            child: Text('Dark Mode Toggle'),
-          ),
+          //TOS
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
@@ -56,6 +46,7 @@ class _HomePageState extends State<Settings> {
             onPressed: () {},
             child: Text('Terms of Service'),
           ),
+          //Text Size
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.grey),
@@ -68,6 +59,7 @@ class _HomePageState extends State<Settings> {
             },
             child: Text('Text Size'),
           ),
+          //Credits page link (why is it here?)
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
@@ -85,3 +77,5 @@ class _HomePageState extends State<Settings> {
     );
   }
 }
+
+//* This page is due for a full rework as it currently is hard to use */
