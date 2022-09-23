@@ -1,11 +1,11 @@
 {
-    "name": "cvrnet",
-    "short_name": "cvrnet",
+    "name": "CVR-tegu",
+    "short_name": "CVR-tegu",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "a little CVR cross-platform app.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

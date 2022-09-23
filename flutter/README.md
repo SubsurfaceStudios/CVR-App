@@ -1,3 +1,0 @@
-# cvrnet
-
-A Flutter project!
