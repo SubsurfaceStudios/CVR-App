@@ -83,7 +83,7 @@ class _HomePageState extends State<FeedPage> {
 
   Widget build(BuildContext context) {
     print("build");
-    loadFeed(); //testing load for debug
+    //loadFeed(); //testing load for debug
     return new Scaffold(
       appBar: new AppBar(title: new Text("Feed"), actions: <Widget>[
         IconButton(
