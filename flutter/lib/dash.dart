@@ -9,136 +9,33 @@ import 'dart:async';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class FeedPage extends StatefulWidget {
-  FeedPage({Key? key}) : super(key: key);
+class DashPage extends StatefulWidget {
+  DashPage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => new _HomePageState();
 }
 
-class _HomePageState extends State<FeedPage> {
-  var feedJson = null;
-  var offset = 0;
-  var requested = false;
-  var feedcalled = false;
-  var _isLoading = false;
-  var existing = null;
-  var newitems = null;
-  var feedsize = 12;
-  ScrollController _scrollController = new ScrollController();
-
-  //build context
+class _HomePageState extends State<DashPage> {
+  @override
   Widget build(BuildContext context) {
-    print("build");
     return new Scaffold(
-      appBar: new AppBar(title: new Text("Feed"), actions: <Widget>[
-        IconButton(
-          icon: const Icon(Icons.refresh_rounded),
-          tooltip: 'Refresh',
-          onPressed: () {
-            setState(() {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => super.widget));
-            });
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Refreshed Feed')));
-          },
-        ),
-      ]),
+      appBar: new AppBar(
+        title: new Text("Home"),
+      ),
       body: _body(),
     );
   }
 
-  //widget _body
   Widget _body() {
-    _scrollController
-      ..addListener(() {
-        if (_scrollController.position.pixels ==
-                _scrollController.position.maxScrollExtent ||
-            _scrollController.position.maxScrollExtent == 0) {
-          if (_isLoading == false) {
-            _isLoading = true;
-            print("scrollrefresh");
-            print(offset);
-            //nextInFeed();
-          } else {
-            print("refreshBLOCKED");
-            print(offset);
-          }
-        }
-      });
-
-    //output
-    var output = new SingleChildScrollView(
-      controller: _scrollController,
+    return new Center(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        //mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (feedJson != null)
-            for (int i = 0; i < (feedJson.length); i++)
-              new Column(children: [
-                Image.network(
-                  'https://api.compensationvr.tk${feedJson[i]["filePath"]}',
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.width / (1920 / 1080),
-                  fit: BoxFit.cover,
-                  loadingBuilder: (BuildContext context, Widget child,
-                      ImageChunkEvent? loadingProgress) {
-                    if (loadingProgress == null) {
-                      return child;
-                    }
-                    return Container(
-                        height:
-                            MediaQuery.of(context).size.width / (1920 / 1080),
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                                : null,
-                          ),
-                        ));
-                  },
-                  errorBuilder: (BuildContext context, Object exception,
-                      StackTrace? stackTrace) {
-                    print('Image feed request error: ${stackTrace}.');
-                    return Container(
-                        height:
-                            MediaQuery.of(context).size.width / (1920 / 1080),
-                        child: Center(
-                            child: Column(
-                          children: [
-                            Text("Error loading image",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold)),
-                            Text(
-                              exception.toString(),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                          mainAxisAlignment: MainAxisAlignment.center,
-                        )));
-                  },
-                ),
-                Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                      "Photo by ${feedJson[i]["takenBy"]["username"]} on ${feedJson[i]["takenOn"]["humanReadable"]}",
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left),
-                )
-              ]),
-          Center(
-            child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: CircularProgressIndicator(),
-            ),
-          ),
+          Text("Gecko..."),
         ],
       ),
     );
-
-    return output;
   }
 }

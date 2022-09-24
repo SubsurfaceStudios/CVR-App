@@ -1,4 +1,5 @@
 import 'package:cvrnet/feed.dart';
+import 'package:cvrnet/dash.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'settings.dart';
@@ -44,6 +45,18 @@ class _HomePageState extends State<HomePage> {
               );
             },
             child: Text('Feed'),
+          ),
+          TextButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DashPage()),
+              );
+            },
+            child: Text('Gecko'),
           ),
           TextButton(
             style: ButtonStyle(
