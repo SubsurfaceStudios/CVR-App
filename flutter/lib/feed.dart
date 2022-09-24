@@ -37,7 +37,7 @@ class _HomePageState extends State<FeedPage> {
       var response = await http.get(Uri.parse(
           "https://api.compensationvr.tk/api/social/imgfeed?offset=${offset}&count=${feedsize}&reverse"));
 
-      // feedcalled = false;
+      //feedcalled = false;
       if (response.statusCode == 200) {
         if (feedJson != null) {
           print("combine" + offset.toString());
@@ -49,7 +49,7 @@ class _HomePageState extends State<FeedPage> {
           print(feedJson.length);
           print("set" + offset.toString());
         }
-        // feedJson = json.decode(response.body);
+        //feedJson = json.decode(response.body);
 
         print("Images Fetched Successfully");
         print("LOADSUCCESS " +
@@ -83,7 +83,7 @@ class _HomePageState extends State<FeedPage> {
 
   Widget build(BuildContext context) {
     print("build");
-    //loadFeed();
+    //loadFeed(); //testing load for debug
     return new Scaffold(
       appBar: new AppBar(title: new Text("Feed"), actions: <Widget>[
         IconButton(
@@ -194,3 +194,9 @@ class _HomePageState extends State<FeedPage> {
     return output;
   }
 }
+
+/* current notes:
+  - The infinite scrolling from upstream problems
+    - Loads too much content causing freeze
+    - Images seem to repeat (?)
+*/
