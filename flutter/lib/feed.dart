@@ -83,6 +83,7 @@ class _HomePageState extends State<FeedPage> {
 
   Widget build(BuildContext context) {
     print("build");
+    //loadFeed();
     return new Scaffold(
       appBar: new AppBar(title: new Text("Feed"), actions: <Widget>[
         IconButton(
@@ -107,7 +108,6 @@ class _HomePageState extends State<FeedPage> {
   Widget _body() {
     _scrollController
       ..addListener(() {
-        
         if (_scrollController.position.pixels ==
                 _scrollController.position.maxScrollExtent ||
             _scrollController.position.maxScrollExtent == 0) {
@@ -122,8 +122,8 @@ class _HomePageState extends State<FeedPage> {
           }
         }
       });
-    
-    var output =  new SingleChildScrollView(
+
+    var output = new SingleChildScrollView(
       controller: _scrollController,
       child: Column(
         children: [
@@ -190,9 +190,6 @@ class _HomePageState extends State<FeedPage> {
         ],
       ),
     );
-
-
-
 
     return output;
   }
