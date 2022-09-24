@@ -5,21 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "CompensationVR-tegu",
+            "name": "CAV-tegu",
             "cwd": "flutter",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart"
         },
         {
-            "name": "CompensationVR-tegu (profile mode)",
+            "name": "CAS-tegu (profile mode)",
             "cwd": "flutter",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "CompensationVR-tegu (release mode)",
+            "name": "CAS-tegu (release mode)",
             "cwd": "flutter",
             "request": "launch",
             "type": "dart",
