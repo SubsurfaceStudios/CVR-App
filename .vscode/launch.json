@@ -5,21 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "CVR-tegu",
+            "name": "CAS-tegu",
             "cwd": "flutter",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart"
         },
         {
-            "name": "CVR-tegu (profile mode)",
+            "name": "CAS-tegu (profile mode)",
             "cwd": "flutter",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "CVR-tegu (release mode)",
+            "name": "CAS-tegu (release mode)",
             "cwd": "flutter",
             "request": "launch",
             "type": "dart",
