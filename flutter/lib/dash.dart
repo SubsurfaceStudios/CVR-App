@@ -21,8 +21,26 @@ class _HomePageState extends State<DashPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Home"),
-      ),
+          //title text
+          title: new Text("Dash"),
+          //actions
+          actions: <Widget>[
+            //refresh button
+            IconButton(
+              icon: const Icon(Icons.refresh_rounded),
+              tooltip: 'Refresh',
+              onPressed: () {
+                setState(() {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => super.widget));
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Refreshed Feed')));
+              },
+            ),
+          ]),
       body: _body(),
     );
   }
@@ -33,7 +51,7 @@ class _HomePageState extends State<DashPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         //mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Gecko..."),
+          Text("Dash"),
         ],
       ),
     );

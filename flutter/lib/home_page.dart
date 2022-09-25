@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
               image: AssetImage('assets/CASpurple-logo.png'),
               width: 200,
               height: 200),
-          Text("CVRNet App TEGU BUILD v1.3.0 (fork of v1.0.2)"),
+          Text("CVRNet App TEGU BUILD (fork of v1.0.2)"),
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
