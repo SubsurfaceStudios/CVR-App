@@ -26,56 +26,67 @@ class _HomePageState extends State<Settings> {
 
   Widget _body() {
     final themeProvider = Provider.of<ThemeProvider>(context);
-    return new Center(
-      child: Column(
-        children: [
-          //darkmode switch
-          Switch.adaptive(
-              value: themeProvider.isDarkMode,
-              onChanged: (value) {
-                final provider =
-                    Provider.of<ThemeProvider>(context, listen: false);
-                provider.toggleTheme(value);
-              }),
-          //TOS
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+    return new Container(
+      padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+      child: ListView(children: [
+        //top text
+        Text(
+          "Settings",
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+        ),
+        //empty space
+        SizedBox(
+          height: 40,
+        ),
+        Row(
+          children: [
+            //eye icon
+            Icon(
+              Icons.remove_red_eye,
+              color: Colors.deepPurple,
             ),
-            onPressed: () {},
-            child: Text('Terms of Service'),
-          ),
-          //Text Size
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.grey),
+            //empty space
+            SizedBox(
+              width: 8,
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-              );
-            },
-            child: Text('Text Size'),
-          ),
-          //Credits page link (why is it here?)
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            //"visuals" label text
+            Text(
+              "Visuals",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+        //divider
+        Divider(
+          height: 15,
+          thickness: 2,
+        ),
+        //setting 1
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Darkmode",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey),
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Credits()),
-              );
-            },
-            child: Text('Credits'),
-          ),
-          //extra info
-          Text("CVR Social App Settings"),
-          Text("CVRNet App TEGU BUILD (fork of v1.0.2)"),
-        ],
-      ),
+            Icon(
+              Icons.dark_mode,
+              color: Colors.grey,
+            ),
+            //darkmode switch
+            Switch.adaptive(
+                value: themeProvider.isDarkMode,
+                onChanged: (value) {
+                  final provider =
+                      Provider.of<ThemeProvider>(context, listen: false);
+                  provider.toggleTheme(value);
+                }),
+          ],
+        )
+      ]),
     );
   }
 }
