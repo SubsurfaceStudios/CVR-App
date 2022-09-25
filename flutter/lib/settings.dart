@@ -30,11 +30,6 @@ class _HomePageState extends State<Settings> {
       padding: EdgeInsets.only(left: 16, top: 25, right: 16),
       child: ListView(
         children: [
-          //top text
-          Text(
-            "Settings",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-          ),
           //empty space
           SizedBox(
             height: 40,
