@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         //mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image(
-              image: AssetImage('assets/cvrpurple.png'),
+              image: AssetImage('assets/CASpurple-logo.png'),
               width: 200,
               height: 200),
           Text("CVRNet App TEGU BUILD v1.3.0 (fork of v1.0.2)"),
