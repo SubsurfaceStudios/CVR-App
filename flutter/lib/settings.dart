@@ -28,65 +28,67 @@ class _HomePageState extends State<Settings> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return new Container(
       padding: EdgeInsets.only(left: 16, top: 25, right: 16),
-      child: ListView(children: [
-        //top text
-        Text(
-          "Settings",
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-        ),
-        //empty space
-        SizedBox(
-          height: 40,
-        ),
-        Row(
-          children: [
-            //eye icon
-            Icon(
-              Icons.remove_red_eye,
-              color: Colors.deepPurple,
-            ),
-            //empty space
-            SizedBox(
-              width: 8,
-            ),
-            //"visuals" label text
-            Text(
-              "Visuals",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            )
-          ],
-        ),
-        //divider
-        Divider(
-          height: 15,
-          thickness: 2,
-        ),
-        //setting 1
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Darkmode",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey),
-            ),
-            Icon(
-              Icons.dark_mode,
-              color: Colors.grey,
-            ),
-            //darkmode switch
-            Switch.adaptive(
-                value: themeProvider.isDarkMode,
-                onChanged: (value) {
-                  final provider =
-                      Provider.of<ThemeProvider>(context, listen: false);
-                  provider.toggleTheme(value);
-                }),
-          ],
-        )
-      ]),
+      child: ListView(
+        children: [
+          //top text
+          Text(
+            "Settings",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+          ),
+          //empty space
+          SizedBox(
+            height: 40,
+          ),
+          Row(
+            children: [
+              //eye icon
+              Icon(
+                Icons.remove_red_eye,
+                color: Colors.deepPurple,
+              ),
+              //empty space
+              SizedBox(
+                width: 8,
+              ),
+              //"visuals" label text
+              Text(
+                "Visuals",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+          //divider
+          Divider(
+            height: 15,
+            thickness: 2,
+          ),
+          //setting 1
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Darkmode",
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey),
+              ),
+              Icon(
+                Icons.dark_mode,
+                color: Colors.grey,
+              ),
+              //darkmode switch
+              Switch.adaptive(
+                  value: themeProvider.isDarkMode,
+                  onChanged: (value) {
+                    final provider =
+                        Provider.of<ThemeProvider>(context, listen: false);
+                    provider.toggleTheme(value);
+                  }),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
