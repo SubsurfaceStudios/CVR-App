@@ -43,7 +43,7 @@ class _HomePageState extends State<Settings> {
             //eye icon
             Icon(
               Icons.remove_red_eye,
-              color: Colors.green,
+              color: Colors.deepPurple,
             ),
             //empty space
             SizedBox(
