@@ -29,6 +29,8 @@ class _HomePageState extends State<Settings> {
     return new Center(
       child: Column(
         children: [
+          Text("CVR Social App Settings"), //pointless text
+          Text("CVRNet App TEGU BUILD (fork of v1.0.2)"),
           //darkmode switch
           Switch.adaptive(
               value: themeProvider.isDarkMode,
@@ -70,10 +72,7 @@ class _HomePageState extends State<Settings> {
               );
             },
             child: Text('Credits'),
-          ),
-          //extra info
-          Text("CVR Social App Settings"),
-          Text("CVRNet App TEGU BUILD (fork of v1.0.2)"),
+          )
         ],
       ),
     );
