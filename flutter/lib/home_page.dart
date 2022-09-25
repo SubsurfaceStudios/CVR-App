@@ -33,7 +33,6 @@ class _HomePageState extends State<HomePage> {
               image: AssetImage('assets/CASpurple-logo.png'),
               width: 200,
               height: 200),
-          Text("CVRNet App TEGU BUILD (fork of v1.0.2)"),
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
@@ -56,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                 MaterialPageRoute(builder: (context) => DashPage()),
               );
             },
-            child: Text('Gecko (need feed test)'),
+            child: Text('Gecko (new feed test)'),
           ),
           TextButton(
             style: ButtonStyle(
