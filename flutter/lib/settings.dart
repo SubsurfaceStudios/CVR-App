@@ -62,7 +62,7 @@ class _HomePageState extends State<Settings> {
             height: 15,
             thickness: 2,
           ),
-          //setting 1
+          //darkmode setting box
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -77,7 +77,6 @@ class _HomePageState extends State<Settings> {
                 Icons.dark_mode,
                 color: Colors.grey,
               ),
-              //darkmode switch
               Switch.adaptive(
                   value: themeProvider.isDarkMode,
                   onChanged: (value) {
@@ -85,6 +84,28 @@ class _HomePageState extends State<Settings> {
                         Provider.of<ThemeProvider>(context, listen: false);
                     provider.toggleTheme(value);
                   }),
+            ],
+          ),
+          //credits link
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Credits()),
+                    );
+                  },
+                  child: Text("Credits",
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey))),
+              Icon(
+                Icons.credit_card,
+                color: Colors.grey,
+              ),
             ],
           ),
         ],
