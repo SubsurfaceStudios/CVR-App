@@ -21,8 +21,6 @@ class _HomePageState extends State<DashPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-          //title text
-          title: new Text("Dash"),
           //actions
           actions: <Widget>[
             //refresh button
@@ -49,7 +47,6 @@ class _HomePageState extends State<DashPage> {
     return new Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        //mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text("Dash"),
         ],
