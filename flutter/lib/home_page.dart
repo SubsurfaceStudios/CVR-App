@@ -1,5 +1,6 @@
 import 'package:cvrnet/feed.dart';
 import 'package:cvrnet/dash.dart';
+import 'package:cvrnet/store.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'settings.dart';
@@ -78,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        FeedPage()), //change to store link later
+                        StorePage()), //change to store link later
               );
             },
             child: Text('Store'),
