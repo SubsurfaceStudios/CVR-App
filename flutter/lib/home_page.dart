@@ -76,7 +76,9 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FeedPage()),
+                MaterialPageRoute(
+                    builder: (context) =>
+                        FeedPage()), //change to store link later
               );
             },
             child: Text('Store'),
