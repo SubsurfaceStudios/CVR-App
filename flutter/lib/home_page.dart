@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                 MaterialPageRoute(builder: (context) => DashPage()),
               );
             },
-            child: Text('Gecko (new feed test)'),
+            child: Text('Dashboard'),
           ),
           TextButton(
             style: ButtonStyle(
@@ -77,9 +77,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        StorePage()), //change to store link later
+                MaterialPageRoute(builder: (context) => StorePage()),
               );
             },
             child: Text('Store'),
