@@ -6,21 +6,21 @@
     "configurations": [
         {
             "name": "CAS-tegu",
-            "cwd": "CAS-social",
+            "cwd": "cas_social",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart"
         },
         {
             "name": "CAS-tegu (profile mode)",
-            "cwd": "CAS-social",
+            "cwd": "cas_social",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
             "name": "CAS-tegu (release mode)",
-            "cwd": "CAS-social",
+            "cwd": "cas_social",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
