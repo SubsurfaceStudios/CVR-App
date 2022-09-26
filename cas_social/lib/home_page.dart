@@ -18,7 +18,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Home"),
+        title: new Text("CVR Socail"),
+        leading: Image.asset(
+          'assets/CASpurple-logo.png',
+          width: 50,
+          height: 50,
+        ),
       ),
       body: _body(),
     );
@@ -30,10 +35,6 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         //mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image(
-              image: AssetImage('assets/CASpurple-logo.png'),
-              width: 200,
-              height: 200),
           TextButton(
             style: ButtonStyle(
               foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
