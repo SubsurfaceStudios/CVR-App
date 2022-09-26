@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 
-class Search extends StatefulWidget {
-  Search({Key? key}) : super(key: key);
+class SearchPage extends StatefulWidget {
+  SearchPage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => new _HomePageState();
 }
 
-class _HomePageState extends State<Search> {
+class _HomePageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

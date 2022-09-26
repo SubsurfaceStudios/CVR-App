@@ -6,14 +6,14 @@ import 'credits.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
-class Settings extends StatefulWidget {
-  Settings({Key? key}) : super(key: key);
+class SettingsPage extends StatefulWidget {
+  SettingsPage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => new _HomePageState();
 }
 
-class _HomePageState extends State<Settings> {
+class _HomePageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
