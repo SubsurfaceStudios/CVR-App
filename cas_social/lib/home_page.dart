@@ -37,7 +37,10 @@ class _HomePageState extends State<HomePage> {
         children: [
           ElevatedButton(
               onPressed: () {
-                print("debug");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DashPage()),
+                );
               },
               child: Text('Dashboard')),
           TextButton(
