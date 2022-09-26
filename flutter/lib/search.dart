@@ -25,13 +25,14 @@ class _HomePageState extends State<Search> {
         children: [
           TextField(
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Search users and rooms',
-            ),
+                border: OutlineInputBorder(),
+                hintText: 'Search users and rooms',
+                hintStyle: TextStyle(color: Colors.white)),
+            style: TextStyle(color: Colors.white),
           ),
           TextButton(
             style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.purple),
             ),
             onPressed: () {},
             child: Text('Search'),
